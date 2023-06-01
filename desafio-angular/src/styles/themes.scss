@@ -1,0 +1,242 @@
+@use 'sass:map';
+@use 'sass:list';
+@use '@angular/material' as mat;
+@import './theme-constructor';
+
+@include mat.all-component-typographies();
+@include mat.core();
+
+// default material theme
+$materialDefaultLightTheme: mat.define-light-theme((
+	color: (
+		primary: mat.define-palette(mat.$blue-grey-palette, 700),
+		accent: mat.define-palette(mat.$blue-grey-palette, 700)
+	)
+));
+
+$materialDefaultDarkTheme: mat.define-dark-theme((
+	color: (
+		primary: mat.define-palette(mat.$blue-grey-palette, 50),
+		accent: mat.define-palette(mat.$blue-grey-palette, 50)
+	)
+));
+
+// @include mat.core-theme($materialDefaultLightTheme);
+@include mat.all-component-themes($materialDefaultLightTheme);
+
+// Default material theme
+// $default-material-app-theme:   mat.define-light-theme(mat.define-palette(mat.$indigo-palette), mat.define-palette(mat.$pink-palette));
+// @include mat.all-component-themes($default-material-app-theme);
+
+// default values for
+// mat.define-palette(
+// 	$base-palette,
+// 	$default: 500,
+// 	$lighter: 100,
+// 	$darker: 700
+// )
+
+@mixin input-background-autofill($backgroundColor, $foregroundColor){
+	input {
+		&:-webkit-autofill {
+			&,
+			&:hover,
+			&:focus,
+			&:active  {
+				box-shadow: 0 0 0 100px $backgroundColor inset !important;
+				-webkit-box-shadow: 0 0 0 100px $backgroundColor inset !important;
+				-webkit-text-fill-color: $foregroundColor !important;
+			}
+		}
+	}
+}
+
+@mixin apply-theme-base-colors-into-children($theme){
+
+	$backgroundColorBase: mat.get-color-from-palette(mat.get-color-from-palette($theme, background), card);
+
+	@include input-background-autofill(
+		$backgroundColorBase,
+		mat.get-color-from-palette(mat.get-color-from-palette($theme, foreground), base)
+	);
+
+	--theme-palette-hue-bg: #{$backgroundColorBase};
+
+}
+
+%components-light-theme {
+	@include mat.form-field-color($materialDefaultLightTheme);
+	// @include mat.card-color($materialDefaultLightTheme);
+	@include mat.list-color($materialDefaultLightTheme);
+	@include mat.select-color($materialDefaultLightTheme);
+	@include mat.divider-color($materialDefaultLightTheme);
+	// @include mat.datepicker-color($materialDefaultLightTheme);
+}
+
+%components-dark-theme {
+	// @include mat.all-component-colors($materialDefaultDarkTheme);
+	@include mat.form-field-color($materialDefaultDarkTheme);
+	// @include mat.card-color($materialDefaultDarkTheme);
+	@include mat.list-color($materialDefaultDarkTheme);
+	@include mat.select-color($materialDefaultDarkTheme);
+	@include mat.divider-color($materialDefaultDarkTheme);
+	// @include mat.datepicker-color($materialDefaultDarkTheme);
+}
+
+@mixin angular-material-color-variant(
+  $attrName,
+  $paletteName,
+  $palette,
+  $paletteSettings,
+  $variation
+){
+
+  $variationAttr: '';
+  $variationValue: '';
+
+  @if $variation != base {
+    $variationAttr: '-#{$variation}';
+  }
+
+  @if type-of($variation) == number or str-slice(quote($variation), 1, 1) == "A" {
+    $variationValue: $variation;
+  } @else {
+    $variationValue: map.get($paletteSettings, $variation);
+  }
+
+  // background color
+  &[#{$attrName}-bg="#{$paletteName}#{$variationAttr}"]{
+
+		$my-theme: '';
+
+		// $lightVariations: light, 50, 100, 200, 300, A100, A200;
+
+    $contrast: mat.get-color-from-palette(
+      $palette,
+      $variationValue + '-contrast'
+    );
+
+		@if $contrast != white {
+
+			$my-theme: mat.define-light-theme((
+			color: (
+				primary: $palette,
+				accent: $palette,
+			)
+			));
+
+			@extend %components-light-theme;
+
+		}@else{
+
+			$my-theme: mat.define-dark-theme((
+			color: (
+				primary: $palette,
+				accent: $palette,
+			)
+			));
+
+			@extend %components-dark-theme;
+
+		}
+
+		// background
+		// all hue colors are set as primary to be used as a alternative
+		$backgroundColor: mat.get-color-from-palette(
+			map.get(mat.get-color-config($my-theme), 'primary'),
+			$variationValue
+		);
+		background-color: $backgroundColor;
+		--theme-palette-hue-bg: #{$backgroundColor};
+
+		// foreground
+		// all hue colors are set as primary to be used as a alternative
+		$textColor: mat.get-color-from-palette(
+			map.get(mat.get-color-config($my-theme), foreground),
+			text
+		);
+		color: $textColor;
+		--outline-color-hover: #{$textColor};
+
+		@include input-background-autofill($backgroundColor, $textColor);
+
+		.mat-mdc-input-element::-webkit-input-placeholder {
+			color: mat.get-color-from-palette(
+				map.get(mat.get-color-config($my-theme), foreground),
+				disabled-text
+			);
+		}
+
+		.mat-mdc-progress-spinner circle {
+			stroke: $textColor;
+		}
+
+		mat-datepicker-toggle {
+			color: currentColor;
+		}
+
+	}
+
+  // foreground color
+	$fgColor: mat.get-color-from-palette(
+		$palette,
+		$variationValue
+	);
+
+  &[#{$attrName}-fg="#{$paletteName}#{$variationAttr}"]{
+		color: $fgColor;
+  }
+
+	--color-palette-#{$paletteName}#{$variationAttr}: #{$fgColor};
+
+}
+
+// Apply in elements attribute
+// [theme-palette-hue-bg]="primary-dark"
+// [theme-palette-hue-fg]="primary-light"
+@mixin angular-material-theme-color-variants($paletteName, $palette, $paletteSettings){
+
+  $attrName: 'theme-palette-hue';
+
+  $variants: base, light, dark, 50, 100, 200, 300, 400, 500, 600, 700, 800, 900, A100, A200, A400, A700;
+
+  @each $variant in $variants {
+    @include angular-material-color-variant(
+      $attrName,
+      $paletteName,
+      $palette,
+      $paletteSettings,
+      $variant
+    );
+  }
+
+}
+
+// mat.define-palette($base-palette, $default: 500, $lighter: 100, $darker: 700, $text: $default)
+@function angular-material-get-theme-palette-settings($palette-settings){
+  @return mat.define-palette(
+    map.get($palette-settings, palette),
+    map.get($palette-settings, base),
+    map.get($palette-settings, light)
+  );
+}
+
+@import './themes/customer-demo.scss';
+
+/*
+    result[0] = shadeColor(color, 0.9   ); //----> 50
+    result[1] = shadeColor(color, 0.7   ); //----> 100
+    result[2] = shadeColor(color, 0.5   ); //----> 200
+    result[3] = shadeColor(color, 0.333 ); //----> 300
+    result[4] = shadeColor(color, 0.166 ); //----> 400
+    result[5] = shadeColor(color, 0     ); //----> 500
+    result[6] = shadeColor(color, -0.125); //----> 600
+    result[7] = shadeColor(color, -0.25 ); //----> 700
+    result[8] = shadeColor(color, -0.375); //----> 800
+    result[9] = shadeColor(color, -0.5  ); //----> 900
+
+    result[10] = shadeColor(color, 0.7  ); //----> A100
+    result[11] = shadeColor(color, 0.5  ); //----> A200
+    result[12] = shadeColor(color, 0.166); //----> A400
+    result[13] = shadeColor(color, -0.25); //----> A700
+*/

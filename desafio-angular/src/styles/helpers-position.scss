@@ -1,0 +1,20 @@
+#app-body {
+
+	[position-relative] {
+		position: relative;
+	}
+
+	[layout-wrapper-scrollable] {
+		position: relative;
+	}
+
+	[layout-content-scrollable] {
+		overflow-y: auto;
+		position: absolute;
+		top: 0;
+		left: 0;
+		bottom: 0;
+		right: 0;
+	}
+
+}

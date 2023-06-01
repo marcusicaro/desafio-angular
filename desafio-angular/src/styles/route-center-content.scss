@@ -1,0 +1,9 @@
+
+@mixin max-width($maxWidth: 700px){
+	background-color: var(--mat-background-status-bar);
+	> [layout="column"] {
+		max-width: $maxWidth;
+		margin: 0 auto;
+		background-color: var(--mat-background-background);
+	}
+}

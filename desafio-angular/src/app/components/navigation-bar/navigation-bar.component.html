@@ -1,0 +1,75 @@
+
+<div
+	layout="column"
+	flex
+	[ngClass]="{
+		minimized: sideNavBehavior.minimized
+	}"
+>
+
+
+	<div
+		layout="column"
+		layout-padding
+		layout-align="center center"
+		theme-palette-hue-bg="primary-700"
+		class="companyLogo"
+	>
+		<customer-logo></customer-logo>
+		<button
+			mat-icon-button
+			class="minimize-button"
+			(click)="minimize()"
+		>
+			<mat-icon svgIcon="arrow_back"></mat-icon>
+		</button>
+	</div>
+
+	<div
+		layout="column"
+		flex
+		theme-palette-hue-bg="primary"
+	>
+
+		<mat-nav-list no-padding-top>
+
+			<mat-list-item
+				*ngIf="!currentDevice.phone && sideNavBehavior.minimized"
+				(click)="minimize()"
+			>
+				<mat-icon matListItemIcon>menu</mat-icon>
+			</mat-list-item>
+
+			<mat-list-item
+				(click)="hideSideNav()"
+				[routerLink]="['/home']"
+				matTooltip="Home"
+				matTooltipPosition="right"
+				[matTooltipDisabled]="!sideNavBehavior.minimized"
+			>
+				<mat-icon matListItemIcon svgIcon="home"></mat-icon>
+				<span matListItemTitle>Home</span>
+			</mat-list-item>
+
+			<mat-divider></mat-divider>
+
+		</mat-nav-list>
+
+	</div>
+
+	<mat-list no-padding-top class="mat-list-app-version">
+		<mat-divider></mat-divider>
+		<mat-list-item>
+			<div
+				flex
+				layout="row"
+				layout-align="end center"
+				class="mat-subheader"
+			>
+				<div class="mat-body-strong">v{{appVersion}}</div>
+				<mat-icon class="icon-app-version" svgIcon="local_offer" matListItemIcon></mat-icon>
+			</div>
+		</mat-list-item>
+	</mat-list>
+
+</div>

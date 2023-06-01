@@ -1,0 +1,39 @@
+
+[text-overflow-ellipsis-wrapper]{
+	display: inline-flex;
+	width: 0;
+	flex: 1 1 auto;
+	// overflow: hidden;
+	// padding: 5px;
+	// min-width: 0;
+}
+
+[text-overflow-ellipsis]{
+	min-width: 0;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+[text-uppercase] {
+	text-transform: uppercase;
+}
+[text-lowercase] {
+	text-transform: lowercase;
+}
+[text-capitalize] {
+	text-transform: capitalize;
+}
+
+[text-nowrap] {
+	white-space: nowrap;
+}
+
+[text-wrap] {
+	white-space: normal;
+	word-break: break-word;
+}
+
+[text-word-break] {
+	word-break: break-word;
+}

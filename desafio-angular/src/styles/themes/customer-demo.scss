@@ -1,0 +1,113 @@
+@use '@angular/material' as mat;
+[theme="customer-demo"] {
+
+	$md-mcgpalette0: (
+			50 : #f2e1f1,
+			100 : #deb3db,
+			200 : #c981c3,
+			300 : #b34fab,
+			400 : #a22999,
+			500 : #920387,
+			600 : #8a037f,
+			700 : #7f0274,
+			800 : #75026a,
+			900 : #630157,
+			A100 : #ff93ef,
+			A200 : #ff60e8,
+			A400 : #ff2de1,
+			A700 : #ff14dd,
+			contrast: (
+					50 : #000000,
+					100 : #000000,
+					200 : #000000,
+					300 : #ffffff,
+					400 : #ffffff,
+					500 : #ffffff,
+					600 : #ffffff,
+					700 : #ffffff,
+					800 : #ffffff,
+					900 : #ffffff,
+					A100 : #000000,
+					A200 : #000000,
+					A400 : #000000,
+					A700 : #ffffff,
+			)
+	);
+
+	$md-mcgpalette1: (
+			50 : #eef5fb,
+			100 : #d4e5f5,
+			200 : #b7d4ee,
+			300 : #9ac2e7,
+			400 : #85b5e1,
+			500 : #6fa8dc,
+			600 : #67a0d8,
+			700 : #5c97d3,
+			800 : #528dce,
+			900 : #407dc5,
+			A100 : #ffffff,
+			A200 : #e3efff,
+			A400 : #b0d3ff,
+			A700 : #96c4ff,
+			contrast: (
+					50 : #000000,
+					100 : #000000,
+					200 : #000000,
+					300 : #000000,
+					400 : #000000,
+					500 : #000000,
+					600 : #000000,
+					700 : #000000,
+					800 : #000000,
+					900 : #ffffff,
+					A100 : #000000,
+					A200 : #000000,
+					A400 : #000000,
+					A700 : #000000,
+			)
+	);
+
+	$md-mcgpalette2: (
+			50 : #ffe8e0,
+			100 : #ffc5b3,
+			200 : #ff9e80,
+			300 : #ff774d,
+			400 : #ff5a26,
+			500 : #ff3d00,
+			600 : #ff3700,
+			700 : #ff2f00,
+			800 : #ff2700,
+			900 : #ff1a00,
+			A100 : #ffffff,
+			A200 : #fff3f2,
+			A400 : #ffc3bf,
+			A700 : #ffaba6,
+			contrast: (
+					50 : #000000,
+					100 : #000000,
+					200 : #000000,
+					300 : #000000,
+					400 : #000000,
+					500 : #ffffff,
+					600 : #ffffff,
+					700 : #ffffff,
+					800 : #ffffff,
+					900 : #ffffff,
+					A100 : #000000,
+					A200 : #000000,
+					A400 : #000000,
+					A700 : #000000,
+			)
+	);
+
+	$theme-primary-palette-settings: ("palette": $md-mcgpalette0, "base": 500, "light": 100, "dark": 700);
+	$theme-accent-palette-settings: ("palette": $md-mcgpalette1, "base": 500, "light": 100, "dark": 700);
+	$theme-warn-palette-settings: ("palette": $md-mcgpalette2, "base": 500, "light": 100, "dark": 700);
+
+	@include theme-constructor(
+		$theme-primary-palette-settings,
+		$theme-accent-palette-settings,
+		$theme-warn-palette-settings
+	);
+
+}

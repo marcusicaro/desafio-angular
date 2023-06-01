@@ -1,0 +1,117 @@
+@import 'src/styles/mixin-scroll-overlay';
+
+:host {
+
+	display: block;
+	width: 100%;
+
+	.minimize-button {
+		position: absolute;
+		bottom: -10px;
+		right: 12px;
+		z-index: 10;
+		width: 25px;
+		height: 25px;
+		line-height: 1;
+		padding: 2px;
+		background-color: var(--color-palette-primary-300);
+		mat-icon {
+			--mdc-icon-button-icon-size: 100%;
+			line-height: 1px;
+			width: var(--mdc-icon-button-icon-size);
+			height: var(--mdc-icon-button-icon-size);
+		}
+	}
+
+	mat-list-item {
+		mat-icon[matListItemIcon] {
+			margin-right: 12px;
+			--mdc-theme-text-icon-on-background: var(--mdc-list-list-item-label-text-color);
+		}
+	}
+
+	.mat-list-app-version {
+		mat-list-item {
+			.icon-app-version {
+				margin: 0 0 0 4px;
+			}
+			.mat-subheader {
+				color: var(--mdc-list-list-item-hover-leading-icon-color);
+				padding: 0;
+			}
+		}
+	}
+
+	// span[matListItemTitle] {
+	// 	padding-left: 12px;
+	// }
+
+}
+
+customer-logo {
+	width: 100%;
+}
+
+.companyLogo {
+	min-height: 120px;
+	padding: 8px 16px;
+	position: relative;
+	&:focus-visible {
+		outline: none;
+	}
+}
+
+/* TODO(mdc-migration): The following rule targets internal classes of list that may no longer apply for the MDC version.*/
+.mat-list-menu-button {
+	display: none;
+}
+
+// :host-context(main-controller[device="tablet"]),
+:host-context(main-controller[device="desktop"]),
+:host-context(main-controller[device="tablet"][device-landscape]){
+	.minimized {
+		/* TODO(mdc-migration): The following rule targets internal classes of list that may no longer apply for the MDC version.*/
+		.mat-list-menu-button {
+			display: block;
+		}
+
+		// .mat-list-person-button {
+		// 	padding-top: 0;
+		// }
+		/* TODO(mdc-migration): The following rule targets internal classes of list that may no longer apply for the MDC version.*/
+		.companyLogo,
+		span[matListItemTitle],
+		.mat-list-logout-button,
+		.mat-list-app-version,
+		.mat-list-username,
+		navigation-bar-extras {
+			display: none;
+		}
+
+		mat-list-item {
+			padding: 0;
+			mat-icon {
+				margin-left: 20px;
+			}
+		}
+
+	}
+}
+
+:host-context(main-controller[device="phone"]),
+:host-context(main-controller[device="tablet"][device-portrait]){
+	customer-logo {
+		width: 70%;
+	}
+	.minimize-button {
+		display: none;
+	}
+}
+
+::ng-deep {
+	@media (any-pointer: fine) {
+		.mat-drawer-inner-container {
+			@include scroll-overlay();
+		}
+	}
+}

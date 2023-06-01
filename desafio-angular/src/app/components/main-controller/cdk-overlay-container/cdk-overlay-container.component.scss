@@ -1,0 +1,11 @@
+:host {width: 0; height: 0;}
+
+@media (max-height: 500px) {
+	:host-context(main-controller[device="phone"]) {
+		::ng-deep {
+			.cdk-overlay-pane {
+				bottom: 24px !important;
+			}
+		}
+	}
+}

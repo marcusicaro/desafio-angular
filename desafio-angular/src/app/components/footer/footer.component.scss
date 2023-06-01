@@ -1,0 +1,37 @@
+a,
+a:visited,
+a:active {
+
+	text-decoration: none;
+	color: #ccc;
+
+	&:hover {
+		text-decoration: underline;
+	}
+
+}
+
+:host-context([device="desktop"]),
+:host-context([device="tablet"][device-landscape]){
+
+	.copyright {
+		margin-top: -5px;
+		white-space: nowrap;
+	}
+
+	img {
+		margin: 0 16px;
+		height: 24px;
+		width: auto;
+	}
+
+}
+
+:host-context([device="phone"]),
+:host-context([device="tablet"][device-portrait]){
+
+	img {
+		display: none;
+	}
+
+}

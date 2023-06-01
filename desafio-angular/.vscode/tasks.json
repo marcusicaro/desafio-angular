@@ -1,0 +1,17 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "npm",
+			"script": "serve:dev",
+			"isBackground":true,
+			"presentation":{
+					"focus":true,
+					"panel":"dedicated"
+			},
+			"problemMatcher": [],
+			"label": "npm: serve:dev",
+			"detail": "ng serve -c=dev --host=appdevlocal.namoa.io --ssl=true --ssl-cert=certificates/dev-local/cert.crt --ssl-key=certificates/dev-local/cert.key"
+		}
+	]
+}

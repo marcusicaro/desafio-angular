@@ -1,0 +1,29 @@
+{
+	"DefaultHttpRequestMessages": {
+		"success": "Data sent successfully.",
+		"AddSuccessLabel": "{{label}} adicionado com sucesso",
+		"UpdateSuccessLabel": "{{label}} atualizado com sucesso",
+		"payloadError": "Some data you have entered is not correct. Please verify and try again.",
+		"unauthorized": "Please sign in again.",
+		"forbidden": "You are not allowed to perform this action.",
+		"notFound": "Data not found.",
+		"notFoundLabel": "Nenhum {{label}} encontrado.",
+		"serverError": "Sorry, something went wrong. Please try again."
+	},
+	"Form": {
+		"ValidationMessage": {
+			"required": "Required",
+			"minLength": "Should be at least {{value}} characters long",
+			"maxLength": "Should be less than {{value}} characters long"
+		}
+	},
+	"Route": {
+		"Login": {
+			"inputUsernameLabel": "E-mail or Nickname",
+			"inputPasswordLabel": "Password",
+			"formButtonSubmit": "Sign in",
+			"selectCustomer": "Choose an account",
+			"backToLogin": "Back"
+		}
+	}
+}

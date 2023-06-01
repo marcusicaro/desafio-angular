@@ -1,0 +1,6 @@
+.env
+
+# dist
+tmp
+out-tsc
+node_modules

@@ -1,0 +1,31 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import "./styles/themes";
+@import "./styles/angular-material.layout-attributes";
+
+@import "./styles/helpers-gutters";
+@import "./styles/helpers-position";
+@import "./styles/helpers-text";
+@import "./styles/helpers-image";
+
+@import "./styles/translate-directive.scss";
+
+// for npm roboto-fontface package (to load local files)
+// node_modules/roboto-fontface/fonts/roboto
+$roboto-font-path: "../fonts" !default;
+@import "../node_modules/roboto-fontface/css/roboto/sass/roboto-fontface";
+
+// for npm material-icons package (to load local files)
+$material-icons-font-path: './';
+@import '../node_modules/material-icons/iconfont/material-icons.scss';
+
+html[browser=safari] {
+	// min-height: calc(100vh - env(safe-area-inset-bottom));
+	// height: 100%;
+	body {
+		min-height: -webkit-fill-available;
+	}
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

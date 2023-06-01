@@ -1,0 +1,32 @@
+{
+	"DefaultHttpRequestMessages": {
+		"success": "Dados enviados com sucesso.",
+		"AddSuccessLabel": "{{label}} adicionado com sucesso",
+		"UpdateSuccessLabel": "{{label}} atualizado com sucesso",
+		"payloadError": "Alguns dados estão incorretos. Favor verificar e tentar novamente.",
+		"unauthorized": "Você precisa estar autenticado para essa operação.",
+		"forbidden": "Você não tem permissão para essa operação.",
+		"notFound": "Não encontrado.",
+		"notFoundLabel": "Nenhum {{label}} encontrado.",
+		"serverError": "Desculpe, algo deu errado. Por favor, tente novamente."
+	},
+	"Form": {
+		"ValidationMessage": {
+			"required": "Obrigatório",
+			"minLength": "Precisa ter no mímino {{value}} caracteres",
+			"maxLength": "Permitido no máximo {{value}} caracteres"
+		}
+	},
+	"Route": {
+		"Login": {
+			"inputUsernameLabel": "E-mail ou Apelido",
+			"inputPasswordLabel": "Senha",
+			"formButtonSubmit": "Entrar",
+			"selectCustomer": "Selecione uma conta",
+			"backToLogin": "Voltar"
+		}
+	},
+	"Route.Tickets": {
+			"Components.Details.InternalComments": "Descrição"
+	}
+}

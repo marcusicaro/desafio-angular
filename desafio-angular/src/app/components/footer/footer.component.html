@@ -1,0 +1,28 @@
+<div
+	layout="row"
+	[attr.layout-align]="
+		currentDevice.phone || currentDevice.tablet && currentDevice.orientationPortrait
+			? 'center'
+			: 'end start'
+	"
+	flex="none"
+>
+	<a
+		target="_blank"
+		layout="row"
+		[attr.layout-align]="
+			currentDevice.phone || currentDevice.tablet && currentDevice.orientationPortrait
+				? 'center'
+				: 'end start'
+		"
+		layout-padding
+		flex="none"
+	>
+		<span
+			class="copyright mat-small"
+		>
+			Copyright © {{currentDate | date:'yyyy'}} Presented by Namoa
+		</span>
+		<img *ngIf="!currentDevice.phone" src="/assets/logo-bg-white.svg" />
+	</a>
+</div>

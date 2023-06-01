@@ -1,0 +1,43 @@
+<div *ngIf="tipodeproduto === 'smartphones'; else laptopCase">
+	<div *ngFor="let i of smartphones.products">
+		<mat-card>
+			<img mat-card-image src="{{ i.thumbnail }}" />
+			<mat-card-header
+				><p style="font-weight: bold; margin: 0">Product</p>
+				: {{ i.title }}</mat-card-header
+			>
+			<mat-card-content>
+				<div style="display: flex; gap: 0.5rem">
+					<p style="font-weight: bold; margin: 0">Description:</p>
+					{{ i.description }}
+				</div>
+				<div style="display: flex; gap: 0.5rem">
+					<p style="font-weight: bold; margin: 0">Score:</p>
+					{{ i.rating }}
+				</div>
+			</mat-card-content>
+		</mat-card>
+	</div>
+</div>
+
+<ng-template #laptopCase>
+	<div *ngFor="let i of laptops.products">
+		<mat-card>
+			<img mat-card-image src="{{ i.thumbnail }}" />
+			<mat-card-header
+				><p style="font-weight: bold; margin: 0">Product</p>
+				: {{ i.title }}</mat-card-header
+			>
+			<mat-card-content>
+				<div style="display: flex; gap: 0.5rem">
+					<p style="font-weight: bold; margin: 0">Description:</p>
+					{{ i.description }}
+				</div>
+				<div style="display: flex; gap: 0.5rem">
+					<p style="font-weight: bold; margin: 0">Score:</p>
+					{{ i.rating }}
+				</div>
+			</mat-card-content>
+		</mat-card>
+	</div>
+</ng-template>

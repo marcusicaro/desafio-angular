@@ -1,0 +1,56 @@
+
+$gutters: top, right, bottom, left;
+
+#app-body {
+
+	// margin
+	[no-margin] {
+		margin: 0;
+	}
+
+	@each $gutter in $gutters {
+		[no-margin-#{$gutter}] {
+			margin-#{$gutter}: 0;
+		}
+	}
+
+	// padding
+	.no-padding,
+	[no-padding] {
+		padding: 0;
+	}
+
+	@each $gutter in $gutters {
+		[no-padding-#{$gutter}] {
+			padding-#{$gutter}: 0;
+		}
+	}
+
+	[overflow-auto-y]{
+		overflow-y: auto;
+	}
+
+	[layout-fill-x-auto]{
+		width: auto;
+	}
+
+	[layout-fill-y-auto]{
+		height: auto;
+	}
+
+	[layout-fill-content]{
+		height: fit-content;
+	}
+
+	$line-heights: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9;
+
+	p, span {
+		@each $line-height in $line-heights {
+			&[line-height-#{$line-height}] {
+				line-height: #{'1.' + $line-height};
+			}
+		}
+	}
+
+}
+

@@ -1,0 +1,167 @@
+@use 'sass:map';
+@use '@angular/material' as mat;
+
+@mixin theme-constructor(
+	$theme-primary-palette-settings,
+	$theme-accent-palette-settings,
+	$theme-warn-palette-settings
+) {
+	$theme-primary-palette: angular-material-get-theme-palette-settings($theme-primary-palette-settings);
+	$theme-accent-palette: angular-material-get-theme-palette-settings($theme-accent-palette-settings);
+	$theme-warn-palette: angular-material-get-theme-palette-settings($theme-warn-palette-settings);
+	// $theme-alternate-palette: angular-material-get-theme-palette-settings($theme-alternate-palette-settings);
+
+	--color-palette-primary: #{map.get($theme-primary-palette, default)};
+	--color-palette-accent: #{map.get($theme-accent-palette, default)};
+	--color-palette-warn: #{map.get($theme-warn-palette, default)};
+
+	.link {
+		color: var(--color-palette-primary);
+		text-decoration: underline;
+		cursor: pointer;
+		&:hover,
+		&:focus {
+			opacity: .7;
+		}
+	}
+
+	&:not([theme-dark]){
+
+		a,
+		.link {
+			&:visited {
+				color: rgb(77, 77, 77);
+			}
+		}
+
+		$theme: mat.define-light-theme((
+			color: (
+				primary: $theme-primary-palette,
+				accent: $theme-accent-palette,
+				warn: $theme-warn-palette,
+			)
+		));
+
+		$themeBG: map.get($theme, 'background');
+		$themeFG: map.get($theme, 'foreground');
+
+		--outline-color-hover: #{mat.get-color-from-palette($themeFG, divider, 0.87)};
+
+		--mat-background-status-bar: #{map.get($themeBG, 'status-bar')};
+		--mat-background-app-bar: #{map.get($themeBG, 'app-bar')};
+		--mat-background-background: #{map.get($themeBG, 'background')};
+		--mat-background-hover: #{map.get($themeBG, 'hover')};
+		--mat-background-card: #{map.get($themeBG, 'card')};
+		--mat-background-dialog: #{map.get($themeBG, 'dialog')};
+		--mat-background-disabled-button: #{map.get($themeBG, 'disabled-button')};
+		--mat-background-raised-button: #{map.get($themeBG, 'raised-button')};
+		--mat-background-focused-button: #{map.get($themeBG, 'focused-button')};
+		--mat-background-selected-button: #{map.get($themeBG, 'selected-button')};
+		--mat-background-selected-disabled-button: #{map.get($themeBG, 'selected-disabled-button')};
+		--mat-background-disabled-button-toggle: #{map.get($themeBG, 'disabled-button-toggle')};
+		--mat-background-unselected-chip: #{map.get($themeBG, 'unselected-chip')};
+		--mat-background-disabled-list-option: #{map.get($themeBG, 'disabled-list-option')};
+		--mat-background-tooltip: #{map.get($themeBG, 'tooltip')};
+
+		--mat-foreground-base: #{map.get($themeFG, 'base')};
+		--mat-foreground-divider: #{map.get($themeFG, 'divider')};
+		--mat-foreground-dividers: #{map.get($themeFG, 'dividers')};
+		--mat-foreground-disabled: #{map.get($themeFG, 'disabled')};
+		--mat-foreground-disabled-button: #{map.get($themeFG, 'disabled-button')};
+		--mat-foreground-disabled-text: #{map.get($themeFG, 'disabled-text')};
+		--mat-foreground-elevation: #{map.get($themeFG, 'elevation')};
+		--mat-foreground-hint-text: #{map.get($themeFG, 'hint-text')};
+		--mat-foreground-secondary-text: #{map.get($themeFG, 'secondary-text')};
+		--mat-foreground-icon: #{map.get($themeFG, 'icon')};
+		--mat-foreground-icons: #{map.get($themeFG, 'icons')};
+		--mat-foreground-text: #{map.get($themeFG, 'text')};
+		--mat-foreground-slider-min: #{map.get($themeFG, 'slider-min')};
+		--mat-foreground-slider-off: #{map.get($themeFG, 'slider-off')};
+		--mat-foreground-slider-off-active: #{map.get($themeFG, 'slider-off-active')};
+
+		@include apply-theme-base-colors-into-children($theme);
+
+		@include mat.all-component-colors($theme);
+
+	}
+
+	&[theme-dark]{
+
+		a,
+		.link {
+			&:visited {
+				color: #ccc;
+			}
+		}
+
+		$theme: mat.define-dark-theme((
+			color: (
+				primary: $theme-primary-palette,
+				accent: $theme-accent-palette,
+				warn: $theme-warn-palette,
+			)
+		));
+
+		$themeBG: map.get($theme, 'background');
+		$themeFG: map.get($theme, 'foreground');
+
+		--outline-color-hover: #{mat.get-color-from-palette($themeFG, divider, 1)};
+
+		--mat-background-status-bar: #{map.get($themeBG, 'status-bar')};
+		--mat-background-app-bar: #{map.get($themeBG, 'app-bar')};
+		--mat-background-background: #{map.get($themeBG, 'background')};
+		--mat-background-hover: #{map.get($themeBG, 'hover')};
+		--mat-background-card: #{map.get($themeBG, 'card')};
+		--mat-background-dialog: #{map.get($themeBG, 'dialog')};
+		--mat-background-disabled-button: #{map.get($themeBG, 'disabled-button')};
+		--mat-background-raised-button: #{map.get($themeBG, 'raised-button')};
+		--mat-background-focused-button: #{map.get($themeBG, 'focused-button')};
+		--mat-background-selected-button: #{map.get($themeBG, 'selected-button')};
+		--mat-background-selected-disabled-button: #{map.get($themeBG, 'selected-disabled-button')};
+		--mat-background-disabled-button-toggle: #{map.get($themeBG, 'disabled-button-toggle')};
+		--mat-background-unselected-chip: #{map.get($themeBG, 'unselected-chip')};
+		--mat-background-disabled-list-option: #{map.get($themeBG, 'disabled-list-option')};
+		--mat-background-tooltip: #{map.get($themeBG, 'tooltip')};
+
+		--mat-foreground-base: #{map.get($themeFG, 'base')};
+		--mat-foreground-divider: #{map.get($themeFG, 'divider')};
+		--mat-foreground-dividers: #{map.get($themeFG, 'dividers')};
+		--mat-foreground-disabled: #{map.get($themeFG, 'disabled')};
+		--mat-foreground-disabled-button: #{map.get($themeFG, 'disabled-button')};
+		--mat-foreground-disabled-text: #{map.get($themeFG, 'disabled-text')};
+		--mat-foreground-elevation: #{map.get($themeFG, 'elevation')};
+		--mat-foreground-hint-text: #{map.get($themeFG, 'hint-text')};
+		--mat-foreground-secondary-text: #{map.get($themeFG, 'secondary-text')};
+		--mat-foreground-icon: #{map.get($themeFG, 'icon')};
+		--mat-foreground-icons: #{map.get($themeFG, 'icons')};
+		--mat-foreground-text: #{map.get($themeFG, 'text')};
+		--mat-foreground-slider-min: #{map.get($themeFG, 'slider-min')};
+		--mat-foreground-slider-off: #{map.get($themeFG, 'slider-off')};
+		--mat-foreground-slider-off-active: #{map.get($themeFG, 'slider-off-active')};
+
+		@include apply-theme-base-colors-into-children($theme);
+
+		@include mat.all-component-colors($theme);
+
+	}
+
+	// &:not([theme-dark]),
+	// &[theme-dark] {
+	// 	&,
+	// 	*:not([theme]) {
+
+	// 		@include angular-material-theme-color-variants('primary', $theme-primary-palette, $theme-primary-palette-settings);
+	// 		@include angular-material-theme-color-variants('accent', $theme-accent-palette, $theme-accent-palette-settings);
+	// 		@include angular-material-theme-color-variants('warn', $theme-warn-palette, $theme-warn-palette-settings);
+	// 		// @include angular-material-theme-color-variants('alternate', $theme-alternate-palette, $theme-alternate-palette-settings);
+
+	// 	}
+	// }
+
+	*:not([theme]) {
+		@include angular-material-theme-color-variants('primary', $theme-primary-palette, $theme-primary-palette-settings);
+		@include angular-material-theme-color-variants('accent', $theme-accent-palette, $theme-accent-palette-settings);
+		@include angular-material-theme-color-variants('warn', $theme-warn-palette, $theme-warn-palette-settings);
+	}
+
+}

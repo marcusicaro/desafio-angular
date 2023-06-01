@@ -1,0 +1,99 @@
+<cdk-overlay-container></cdk-overlay-container>
+
+<mat-sidenav-container
+	layout="column"
+	layout-fill
+	(backdropClick)="closeSideNav()"
+	class="side-nav-enabled"
+	[ngClass]="{
+		'side-nav-minimized': sideNavBehavior.minimized
+	}"
+>
+
+  <mat-sidenav
+		#sidenav
+		[mode]="matSidenavAttrs.mode"
+		[opened]="matSidenavAttrs.opened"
+		theme-palette-hue-bg="primary-500"
+		(keydown.escape)="sideNavEscKey()"
+		disableClose
+		class="mat-elevation-z4"
+	>
+		<navigation-bar
+			layout="column"
+			layout-fill
+			layout-fill-y-auto
+		></navigation-bar>
+	</mat-sidenav>
+
+	<mat-sidenav-content
+		layout="column"
+		layout-fill
+		layout-fill-x-auto
+	>
+
+		<div
+			layout="column"
+			layout-fill
+		>
+
+			<mat-toolbar
+				*ngIf="
+					(
+						currentDevice.phone
+						||
+						currentDevice.tablet && currentDevice.orientationPortrait
+					)
+				"
+				flex="none"
+				color="primary"
+				role="heading"
+			>
+				<mat-toolbar-row position-relative>
+
+					<button
+						(click)="sideNavToggle()"
+						mat-icon-button
+					>
+						<mat-icon>menu</mat-icon>
+					</button>
+
+					<button
+						*ngIf="backButtonEnabled()"
+						(click)="backButton()"
+						mat-icon-button
+					>
+						<mat-icon>arrow_back</mat-icon>
+					</button>
+
+					<div
+						layout="row"
+						layout-align="center"
+						flex
+						class="logo-wrapper"
+					>
+						<customer-logo class="logo"></customer-logo>
+						<!-- <img
+							src="/assets/logo-bg-dark.svg"
+							class="logo"
+						/> -->
+					</div>
+				</mat-toolbar-row>
+			</mat-toolbar>
+
+			<div
+				layout="column"
+				flex
+				overflow-auto-y
+			>
+				<router-outlet></router-outlet>
+			</div>
+
+			<footer-app
+			></footer-app>
+
+		</div>
+
+	</mat-sidenav-content>
+
+</mat-sidenav-container>

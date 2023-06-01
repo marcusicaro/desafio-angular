@@ -1,0 +1,17 @@
+:host {
+	display: block;
+	height: 100%;
+	min-height: 100%;
+
+	.home-content {
+		height: auto;
+	}
+}
+
+.title {
+	color: blue;
+}
+
+.laptops-container .title {
+	color: red;
+}

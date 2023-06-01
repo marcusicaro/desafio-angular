@@ -1,0 +1,60 @@
+:host {
+
+	mat-toolbar {
+
+		// fix center position
+		.logo-wrapper {
+			margin-left: -40px;
+			margin-right: -80px;
+		}
+
+		.logo {
+			max-width: 45%;
+			width: auto;
+			height: 26px;
+
+			::ng-deep {
+				img {
+					width: auto;
+					height: 100%;
+				}
+			}
+		}
+
+		mobile-toolbar-right-icons {
+			width: 80px;
+		}
+
+	}
+
+	&[device="desktop"],
+	&[device="tablet"][device-landscape]{
+
+		mat-sidenav-container.side-nav-enabled {
+			&.side-nav-minimized {
+				mat-sidenav {
+					width: 66px;
+				}
+				mat-sidenav-content {
+					margin-left: 66px !important;
+				}
+			}
+			mat-sidenav {
+				width: 200px;
+			}
+			mat-sidenav-content {
+				margin-left: 200px !important;
+			}
+		}
+
+	}
+
+	&[device="phone"],
+	&[device="tablet"][device-portrait]{
+		mat-sidenav {
+			width: 80%;
+			max-width: 300px;
+		}
+	}
+
+}

@@ -1,0 +1,29 @@
+{
+	"DefaultHttpRequestMessages": {
+		"success": "Daten erfolgreich übertragen.",
+		"AddSuccessLabel": "{{label}} adicionado com sucesso",
+		"UpdateSuccessLabel": "{{label}} atualizado com sucesso",
+		"payloadError": "Bitte Ihre Eingabe prüfen und versuchen Sie es erneut.",
+		"unauthorized": "Bitte melden Sie sich erneut an.",
+		"forbidden": "Sie haben keinen Zugriff auf diese Funktion.",
+		"notFound": "Daten wurden nicht gefunden.",
+		"notFoundLabel": "Nenhum {{label}} encontrado.",
+		"serverError": "Leider ist etwas fehlgeschlagen. Versuchen Sie es bitte erneut."
+	},
+	"Form": {
+		"ValidationMessage": {
+			"required": "Pflichtfeld",
+			"minLength": "Die Eingabe muss mindestens {{value}} Zeichen lang sein.",
+			"maxLength": "Die Eingabe darf maximal {{value}} Zeichen lang sein."
+		}
+	},
+	"Route": {
+		"Login": {
+			"inputUsernameLabel": "E-Mail / Benutzername",
+			"inputPasswordLabel": "Passwort",
+			"formButtonSubmit": "Anmelden",
+			"selectCustomer": "Wählen Sie bitte ein Account",
+			"backToLogin": "Zurück"
+		}
+	}
+}
